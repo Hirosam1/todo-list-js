@@ -107,7 +107,7 @@ body{
 
 /* Tasks stuff  */
 #task-list{
-    width:85%;
+    width:75%;
     margin: 0 auto;
 }
 
@@ -138,11 +138,12 @@ body{
 }
 
 .task-status-choices{
-    background:#8F3E0A;
+    background:#B15A28;
     text-align:center;
     min-width:25%;
     width:100%;
     padding:5px;
+    user-select:none;
     border-top-right-radius:35px;
     border-bottom-right-radius:35px;
 }

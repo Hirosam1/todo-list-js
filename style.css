@@ -23,7 +23,7 @@ body{
 /* Header stuff  */
 #page-header{
     justify-content: center;
-    margin:10px;
+    padding-bottom:10px;
     width:100%;
 }
 
@@ -38,7 +38,7 @@ body{
 
 .prompt-btn{
     width:80px;
-    margin:5px;
+    margin:7px;
     padding:10px;
     text-align:center;
     border-radius:5px;

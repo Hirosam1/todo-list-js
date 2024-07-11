@@ -112,10 +112,15 @@ body{
 }
 
 .task-inst{
-    padding-bottom:15px;
-    border-radius:35px;
+    width:100%;
     justify-content: center;
-    /* box-shadow: 15px 15px 15px black; */
+    border-radius:35px;
+    box-shadow: none;
+    margin-bottom:15px;
+}
+
+.task-inst:hover{
+    box-shadow: 25px 15px 15px #0F0704;
 }
 
 .task-name{
@@ -177,11 +182,10 @@ body{
 }
 
 /* prompt sutff */
-
-#new-task-form input{
+.simple-prompt input{
     width:90%;
 }
-#new-task-form textarea{
+.simple-prompt textarea{
     width:90%;
     resize:none;
 }

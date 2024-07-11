@@ -9,6 +9,8 @@ let newTaskPromptObj = document.getElementById('new-task-prompt');
 let newTaskFormObj = document.getElementById('new-task-form');
 let deleteTaskPromptObj = document.getElementById('delete-task-prompt');
 let deleteTaskSelectObj = document.getElementById('delete-task-select');
+let taskNameInptObj = document.getElementById('task-name-inpt');
+let taskDescriptionInptObj = document.getElementById('task-description-inpt');
 
 let loadedInsts = 0;
 let getTaskByName = function(taskName){ for(let i=0; i<taskListObj.children.length; i++){
@@ -24,13 +26,17 @@ let getTaskByName = function(taskName){ for(let i=0; i<taskListObj.children.leng
 
 let loadRemovableTasksOpts = function(){
     let optionsHtml = ''
-    for(let i = 0; i < taskListObj.children.length; i++){
-	let taskName = taskListObj.children[i].getElementsByClassName('task-name');
-	if(taskName.length > 0){
-	    let taskNameStr = taskName[0].innerHTML;
-	    taskNameStr = taskNameStr.substring(0,taskNameStr.length - taskSep.length);
-	    optionsHtml += `<option value='${taskNameStr}'>${taskNameStr}</option>`
+    if (taskListObj.children.length > 0){
+	for(let i = 0; i < taskListObj.children.length; i++){
+	    let taskName = taskListObj.children[i].getElementsByClassName('task-name');
+	    if(taskName.length > 0){
+		let taskNameStr = taskName[0].innerHTML;
+		taskNameStr = taskNameStr.substring(0,taskNameStr.length - taskSep.length);
+		optionsHtml += `<option value='${taskNameStr}'>${taskNameStr}</option>`
+	    }
 	}
+    }else{
+	optionsHtml += `<option value='NONE'>NONE</option>`
     }
     deleteTaskSelectObj.innerHTML = optionsHtml;
 }
@@ -77,8 +83,8 @@ let onNewTask = function(){
 }
 
 let onAcceptNewTask = function(){
-    let taskName = document.getElementById('task-name').value;
-    let taskDescription = document.getElementById('task-description').value;
+    let taskName = taskNameInptObj.value;
+    let taskDescription = taskDescriptionInptObj.value;
     let findTask = getTaskByName(taskName);
     if(findTask === undefined){
 	if(taskName != ""){

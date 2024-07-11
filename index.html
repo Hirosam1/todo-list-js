@@ -13,15 +13,15 @@
        <div id='switch-theme'>o</div>  
    </div>
    <br><br>
-   <div id='task-list'>
+   <div id='task-list' class='fx-col'>
    </div>
    <!-- New task prompt -->
    <div id="new-task-prompt" class="simple-prompt">
        <form id='new-task-form'>
 	   <p>Task name:</p>
-	   <input type="text" id="task-name" name="task-name" value="">
+	   <input type="text" id="task-name-inpt" name="task-name" value="">
 	   <p>Task description:</p>
-	   <textarea id="task-description" name="task-description" value="" rows="6"></textarea>
+	   <textarea id="task-description-inpt" name="task-description" value="" rows="6"></textarea>
 	   <br><br>
 	   <div class='fx-row'>
 	       <div class="prompt-btn accept-btn" onclick="onAcceptNewTask()">Accept</div>
@@ -30,15 +30,17 @@
 	</form>
    </div>
    <!--------------------->
+   <!-----Delete task ---->
    <div id="delete-task-prompt" class="simple-prompt">
       <p>Remove task:</p>
-      <select id="delete-task-select" name="tasks" >
+      <select id="delete-task-select" style="min-width:25px" name="tasks" >
       </select>
       <div class="fx-row" style="padding:15px;margin:5px;">
 	  <div class="prompt-btn negate-btn" onclick="onAcceptRemoveTask()">Delete!</div>
 	  <div class="prompt-btn cancel-btn" onclick="onCancelRemoveTask()">Cancel</div>
       <div>
    </div>
+   <!--------------------->
    <script src='script.js'></script>
   </body>
 </html>

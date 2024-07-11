@@ -1,0 +1,172 @@
+body{
+    margin:0px;
+    background:#201F1C;
+    color:#D2FACA;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.v-separator{
+    background:#191914;
+}
+
+.fx-col{
+    display:flex;
+    flex-flow:column;
+}
+
+.fx-row{
+    display:flex;
+    flex-flow:row;
+}
+
+/* Header stuff  */
+#page-header{
+    margin:5px;
+    padding:15px;
+    width:100%;
+}
+
+#page-title{
+    background:#567860;
+    text-align:center;
+    font-size:50px;
+    width:40%;
+    border-top-left-radius:25px;
+}
+
+.prompt-btn{
+    width:80px;
+    margin:5px;
+    padding:10px;
+    text-align:center;
+    border-radius:5px;
+}
+
+.accept-btn{
+    user-select:none;
+    background:#1F7C2D;
+}
+
+.accept-btn:hover{
+    background:#1A6B22;
+}
+
+.accept-btn:active{
+    background:#124F17;
+}
+
+.negate-btn{
+    user-select:none;
+    background:#82201F;
+}
+
+.negate-btn:hover{
+    background:#701D18;
+}
+
+.negate-btn:active{
+    background:#5C1311;
+}
+
+#new-task{
+    text-align:center;
+    padding-top:15px;
+    width:15%;
+    font-size:20px;
+}
+
+#remove-task{
+    text-align:center;
+    padding-top:15px;
+    width:15%;
+    font-size:20px;
+}
+
+#switch-theme{
+    text-align:center;
+    background:#868E59;
+    width:20%;
+    border-top-right-radius:25px;
+}
+
+/* Tasks stuff  */
+#task-list{
+    width:85%;
+    margin: 0 auto;
+}
+
+.task-inst{
+    padding-bottom:15px;
+    border-radius:35px;
+    margin:0px;
+    /* box-shadow: 15px 15px 15px black; */
+}
+
+.task-name{
+    font-weight: 800;
+}
+
+.task-definition{
+    padding:20px;
+    text-align:justify;
+    background:#817744;
+    min-width:40%;
+    max-width:70%;
+    border-top-left-radius:35px;
+    border-bottom-left-radius:35px;
+}
+
+.task-status-choices{
+    background:#8F3E0A;
+    text-align:center;
+    min-width:25%;
+    width:100%;
+    padding:5px;
+    border-top-right-radius:35px;
+    border-bottom-right-radius:35px;
+}
+
+.status-choice{
+    width:33%;
+    padding-right:15px;
+}
+
+.status-choice p{
+    font-weight:600;
+    font-size: 15px;
+    margin-bottom:5px;
+    padding:0px;
+}
+
+.status-choice input{
+    border: 0px;
+    height:20px;
+    margin-top: 0px;
+    margin-bottom:5px;
+}
+
+.simple-prompt{
+    position:fixed;
+    left:35%;
+    border-radius:30px;
+    border:5px solid #233C37;
+    bottom:25%;
+    margin:0px;
+    padding:25px;
+    width:25%;
+    min-width:300px;
+    background:#749989;
+    display:none;
+    font-weight:700;
+    font-size:20px;
+}
+
+/* prompt sutff */
+
+#new-task-form input{
+    width:90%;
+}
+#new-task-form textarea{
+    width:90%;
+    resize:none;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+   <title>My todo</title>
+   <link rel='stylesheet' href='style.css'>
+    </head>
+   <body>
+   <div id='page-header' class='fx-row'>
+       <div id='page-title'>My todo list</div>  
+       <div class='v-separator' style='width:6%'></div>
+       <div id='new-task' class='accept-btn' onclick='onNewTask()'>New task</div>  
+       <div id='remove-task' class='negate-btn' onclick='onRemoveTask()'>Remove task</div>  
+       <div id='switch-theme'>|</div>  
+   </div>
+   <br><br>
+   <div id='task-list'>
+   </div>
+   <!-- New task prompt -->
+   <div id="new-task-prompt" class="simple-prompt">
+       <form id='new-task-form'>
+	   <p>Task name:</p>
+	   <input type="text" id="task-name" name="task-name" value="">
+	   <p>Task description:</p>
+	   <textarea id="task-description" name="task-description" value="" rows="6"></textarea>
+	   <br><br>
+	   <div class='fx-row'>
+	       <div class="prompt-btn accept-btn" onclick="onAcceptNewTask()">Accept</div>
+	       <div class="prompt-btn negate-btn" onclick="onCancelNewTask()">Cancel</div>
+	   </div>
+	</form>
+   </div>
+   <!--------------------->
+   <div id="delete-task-prompt" class="simple-prompt">
+      <p>Remove task:</p>
+      <select id="delete-task-select" name="tasks" >
+      </select>
+      <div class="fx-row" style="padding:15px;margin:5px;">
+	  <div class="prompt-btn accept-btn" onclick="onAcceptRemoveTask()">Delete!</div>
+	  <div class="prompt-btn negate-btn" onclick="onCancelRemoveTask()">Cancel</div>
+      <div>
+   </div>
+   <script src='script.js'></script>
+  </body>
+</html>

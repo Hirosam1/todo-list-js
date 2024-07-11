@@ -8,9 +8,9 @@
    <div id='page-header' class='fx-row'>
        <div id='page-title'>My todo list</div>  
        <div class='v-separator' style='width:6%'></div>
-       <div id='new-task' class='accept-btn' onclick='onNewTask()'>New task</div>  
-       <div id='remove-task' class='negate-btn' onclick='onRemoveTask()'>Remove task</div>  
-       <div id='switch-theme'>|</div>  
+       <div class='header-btn accept-btn' onclick='onNewTask()'>New task</div>
+       <div class='header-btn negate-btn' onclick='onRemoveTask()'>Remove task</div>  
+       <div id='switch-theme'>o</div>  
    </div>
    <br><br>
    <div id='task-list'>
@@ -25,7 +25,7 @@
 	   <br><br>
 	   <div class='fx-row'>
 	       <div class="prompt-btn accept-btn" onclick="onAcceptNewTask()">Accept</div>
-	       <div class="prompt-btn negate-btn" onclick="onCancelNewTask()">Cancel</div>
+	       <div class="prompt-btn cancel-btn" onclick="onCancelNewTask()">Cancel</div>
 	   </div>
 	</form>
    </div>
@@ -35,8 +35,8 @@
       <select id="delete-task-select" name="tasks" >
       </select>
       <div class="fx-row" style="padding:15px;margin:5px;">
-	  <div class="prompt-btn accept-btn" onclick="onAcceptRemoveTask()">Delete!</div>
-	  <div class="prompt-btn negate-btn" onclick="onCancelRemoveTask()">Cancel</div>
+	  <div class="prompt-btn negate-btn" onclick="onAcceptRemoveTask()">Delete!</div>
+	  <div class="prompt-btn cancel-btn" onclick="onCancelRemoveTask()">Cancel</div>
       <div>
    </div>
    <script src='script.js'></script>

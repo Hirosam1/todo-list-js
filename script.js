@@ -1,8 +1,8 @@
 console.log("starting js");
-const taskSep = ':<br>';
+const taskSep = ':';
 const pendingColor = '#B15A28';
-const doingColor = '#9A901D';
-const doneColor = '#508932';
+const doingColor   = '#9A901D';
+const doneColor    = '#508932';
 
 let taskListObj = document.getElementById('task-list');
 let newTaskPromptObj = document.getElementById('new-task-prompt');
@@ -11,9 +11,7 @@ let deleteTaskPromptObj = document.getElementById('delete-task-prompt');
 let deleteTaskSelectObj = document.getElementById('delete-task-select');
 
 let loadedInsts = 0;
-
-let getTaskByName = function(taskName){
-    for(let i=0; i<taskListObj.children.length; i++){
+let getTaskByName = function(taskName){ for(let i=0; i<taskListObj.children.length; i++){
 	let childObj = taskListObj.children[i];
 	let taskNameAux = childObj.getElementsByClassName('task-name')[0];
 	let taskNameStr = taskNameAux.innerHTML.substring(0,taskNameAux.innerHTML.length-taskSep.length);

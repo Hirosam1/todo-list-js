@@ -4,6 +4,7 @@ const pendingColor = '#B15A28';
 const doingColor   = '#9A901D';
 const doneColor    = '#508932';
 
+let pageHeaderObj = document.getElementById('page-header');
 let taskListObj = document.getElementById('task-list');
 let newTaskPromptObj = document.getElementById('new-task-prompt');
 let newTaskFormObj = document.getElementById('new-task-form');
@@ -13,6 +14,7 @@ let taskNameInptObj = document.getElementById('task-name-inpt');
 let taskDescriptionInptObj = document.getElementById('task-description-inpt');
 
 let loadedInsts = 0;
+
 let getTaskByName = function(taskName){ for(let i=0; i<taskListObj.children.length; i++){
 	let childObj = taskListObj.children[i];
 	let taskNameAux = childObj.getElementsByClassName('task-name')[0];
@@ -69,6 +71,16 @@ let addTask = function(taskName, taskDescription){
     loadedInsts+=1;
 }
 
+let disableUI = function(){
+    pageHeaderObj.style.pointerEvents='none';
+    taskListObj.style.pointerEvents='none';
+}
+
+let enableUI = function(){
+    pageHeaderObj.style.pointerEvents='auto';
+    taskListObj.style.pointerEvents='auto';
+}
+
 let onChangeTaskStatus = function(taskName, opt){
     let taskObj = getTaskByName(taskName);
     if(taskObj != undefined){
@@ -79,6 +91,7 @@ let onChangeTaskStatus = function(taskName, opt){
 }
 
 let onNewTask = function(){
+    disableUI();
     newTaskPromptObj.style.display='block';
 }
 
@@ -96,16 +109,20 @@ let onAcceptNewTask = function(){
     }
     newTaskFormObj.reset();
     newTaskPromptObj.style.display='none';
+    enableUI();
 }
 
 let onCancelNewTask = function(){
     newTaskFormObj.reset();
     newTaskPromptObj.style.display='none';
+    enableUI();
 }
 
 let onRemoveTask = function(){
     loadRemovableTasksOpts();
+    disableUI();
     deleteTaskPromptObj.style.display='block';
+    
 }
 
 let onAcceptRemoveTask = function(){
@@ -118,6 +135,7 @@ let onAcceptRemoveTask = function(){
 
 let onCancelRemoveTask = function(){
     deleteTaskPromptObj.style.display='none';
+    enableUI();
 }
 
-console.log('js loaded!');
+console.log('js loadepointer-eventsd!');

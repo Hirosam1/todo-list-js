@@ -14,11 +14,15 @@ let deleteTaskSelectObj = document.getElementById('delete-task-select');
 let taskNameInptObj = document.getElementById('task-name-inpt');
 let taskDescriptionInptObj = document.getElementById('task-description-inpt');
 
+let removeSepFromName = function(taskNameFull){
+    return taskNameFull.substring(0,taskNameFull.length-taskSep.length);
+}
+
 let getTaskByName = function(taskName){ 
     for(let i=0; i<taskListObj.children.length; i++){
 	let childObj = taskListObj.children[i];
 	let taskNameAux = childObj.getElementsByClassName('task-name')[0];
-	let taskNameStr = taskNameAux.innerHTML.substring(0,taskNameAux.innerHTML.length-taskSep.length);
+	let taskNameStr = removeSepFromName(taskNameAux.innerHTML);
 	if(taskNameStr === taskName){
 	    return taskListObj.children[i];
 	}
@@ -34,7 +38,7 @@ let loadRemovableTasksOpts = function(){
 	    //For each element on taskList create an html line as option for deletion.
 	    if(taskName.length > 0){
 		let taskNameStr = taskName[0].innerHTML;
-		taskNameStr = taskNameStr.substring(0,taskNameStr.length - taskSep.length);
+		taskNameStr = removeSepFromName(taskNameStr);
 		optionsHtml += `<option value='${taskNameStr}'>${taskNameStr}</option>`
 	    }
 	}
@@ -58,15 +62,15 @@ let addTask = function(taskName, taskDescription){
 	+`<div class="task-status-choices fx-row" style="background:${pendingColor};">`
 	+` <div class="fx-col status-choice">`
 	+   `<p>Pending</p>`
-	+   `<input type="radio" name="task-status-${taskName}" checked onChange="onChangeTaskStatus('${taskName}','pending')"/>`
+	+   `<input type="radio" name="task-status-${taskName}" value="pending" checked onChange="onChangeTaskStatus('${taskName}','pending')"/>`
 	+ `</div>`
 	+ `<div class="fx-col status-choice">`
 	+     `<p>Doing</p>`
-	+     `<input type="radio" name="task-status-${taskName}" onChange="onChangeTaskStatus('${taskName}','doing')"/>`
+	+     `<input type="radio" name="task-status-${taskName}" value="doing" onChange="onChangeTaskStatus('${taskName}','doing')"/>`
 	+ `</div>`
 	+ `<div class="fx-col status-choice" style="padding-right:5px;">`
 	+     `<p>Done</p>`
-	+     `<input type="radio" name="task-status-${taskName}" onChange="onChangeTaskStatus('${taskName}','done')"/>`
+	+     `<input type="radio" name="task-status-${taskName}" value="done" onChange="onChangeTaskStatus('${taskName}','done')"/>`
 	+ `</div>`
 	+`</div>`
 	+`</div>`;
@@ -145,6 +149,31 @@ let onAcceptRemoveTask = function(){
 let onCancelRemoveTask = function(){
     deleteTaskPromptObj.style.display='none';
     enableUI();
+}
+
+function createTodo(taskName, taskDesc, taskStatus){
+    let todo={};
+    todo['taskName'] = taskName;
+    todo['taskDesc'] = taskDesc;
+    todo['taskStatus'] = taskStatus;
+    return todo;
+}
+
+let saveTodoList = function(){
+    let todoList = [];
+    for(let i = 0; i < taskListObj.children.length; i++){
+	let child = taskListObj.children[i];
+	let taskName = removeSepFromName(child.getElementsByClassName('task-name')[0].innerHTML);
+	let taskDesc = child.getElementsByClassName('task-description')[0].innerHTML;
+	let taskStatus = child.querySelector(`input[name="task-status-${taskName}"]:checked`);
+	if(taskStatus !== null){
+	    todoList.push(createTodo(taskName, taskDesc.substr(1,taskDesc.length), taskStatus.value));
+	}else{
+	    console.log(`Couldn't find query for:\ninput[name="task-status-${taskName}"]:checked`);
+	}
+    }
+    let jsStr = JSON.stringify(todoList, null, 4);
+    console.log(`saving todo list:\n${jsStr}`);
 }
 
 console.log('js loaded!');

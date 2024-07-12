@@ -4,6 +4,7 @@ const pendingColor = '#B15A28';
 const doingColor   = '#9A901D';
 const doneColor    = '#508932';
 
+//Reference for important objects
 let pageHeaderObj = document.getElementById('page-header');
 let taskListObj = document.getElementById('task-list');
 let newTaskPromptObj = document.getElementById('new-task-prompt');
@@ -12,10 +13,11 @@ let deleteTaskPromptObj = document.getElementById('delete-task-prompt');
 let deleteTaskSelectObj = document.getElementById('delete-task-select');
 let taskNameInptObj = document.getElementById('task-name-inpt');
 let taskDescriptionInptObj = document.getElementById('task-description-inpt');
-
+//Keep track of how many instances are loaded
 let loadedInsts = 0;
 
-let getTaskByName = function(taskName){ for(let i=0; i<taskListObj.children.length; i++){
+let getTaskByName = function(taskName){ 
+    for(let i=0; i<taskListObj.children.length; i++){
 	let childObj = taskListObj.children[i];
 	let taskNameAux = childObj.getElementsByClassName('task-name')[0];
 	let taskNameStr = taskNameAux.innerHTML.substring(0,taskNameAux.innerHTML.length-taskSep.length);
@@ -31,6 +33,7 @@ let loadRemovableTasksOpts = function(){
     if (taskListObj.children.length > 0){
 	for(let i = 0; i < taskListObj.children.length; i++){
 	    let taskName = taskListObj.children[i].getElementsByClassName('task-name');
+	    //For each element on taskList create an html line as option for deletion.
 	    if(taskName.length > 0){
 		let taskNameStr = taskName[0].innerHTML;
 		taskNameStr = taskNameStr.substring(0,taskNameStr.length - taskSep.length);
@@ -38,12 +41,14 @@ let loadRemovableTasksOpts = function(){
 	    }
 	}
     }else{
+	//Return only this option when the list is empty.
 	optionsHtml += `<option value='NONE'>NONE</option>`
     }
     deleteTaskSelectObj.innerHTML = optionsHtml;
 }
 
 let addTask = function(taskName, taskDescription){
+    //Push back HTML for a task
     let taskInstHtml =`<div class="task-inst fx-row">`
 	+`<div class="task-definition">`
 	+`<p>`
@@ -72,11 +77,13 @@ let addTask = function(taskName, taskDescription){
 }
 
 let disableUI = function(){
+    //Disable UI for elements arent prompt.
     pageHeaderObj.style.pointerEvents='none';
     taskListObj.style.pointerEvents='none';
 }
 
 let enableUI = function(){
+    //Enable UI for elements arent prompt.
     pageHeaderObj.style.pointerEvents='auto';
     taskListObj.style.pointerEvents='auto';
 }
@@ -92,6 +99,7 @@ let onChangeTaskStatus = function(taskName, opt){
 
 let onNewTask = function(){
     disableUI();
+    //Enables visualization.
     newTaskPromptObj.style.display='block';
 }
 
@@ -108,6 +116,7 @@ let onAcceptNewTask = function(){
 	return;
     }
     newTaskFormObj.reset();
+    //Disables visualization.
     newTaskPromptObj.style.display='none';
     enableUI();
 }

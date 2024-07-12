@@ -120,7 +120,7 @@ body{
 .task-definition{
     padding:20px;
     text-align:justify;
-    background:#817744;
+    background:#7A6843;
     min-width:40%;
     max-width:70%;
     border-top-left-radius:35px;
@@ -172,6 +172,14 @@ body{
     font-size:20px;
 }
 
+.prompt-inpt{
+    width:80%;
+    background:#4E5B50;
+    border:2px solid #3B4445;
+    border-radius:4px;
+    color:#D2FACA;
+}
+
 .prompt-btn{
     width:80px;
     margin:7px;
@@ -180,13 +188,4 @@ body{
     border-radius:5px;
     border-style: solid;
     border-width:2px;
-}
-
-/* prompt sutff */
-.simple-prompt input{
-    width:90%;
-}
-.simple-prompt textarea{
-    width:90%;
-    resize:none;
 }

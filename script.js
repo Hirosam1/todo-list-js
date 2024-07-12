@@ -13,8 +13,6 @@ let deleteTaskPromptObj = document.getElementById('delete-task-prompt');
 let deleteTaskSelectObj = document.getElementById('delete-task-select');
 let taskNameInptObj = document.getElementById('task-name-inpt');
 let taskDescriptionInptObj = document.getElementById('task-description-inpt');
-//Keep track of how many instances are loaded
-let loadedInsts = 0;
 
 let getTaskByName = function(taskName){ 
     for(let i=0; i<taskListObj.children.length; i++){
@@ -60,20 +58,22 @@ let addTask = function(taskName, taskDescription){
 	+`<div class="task-status-choices fx-row" style="background:${pendingColor};">`
 	+` <div class="fx-col status-choice">`
 	+   `<p>Pending</p>`
-	+   `<input type="radio" name="task-status${loadedInsts}" checked onChange="onChangeTaskStatus('${taskName}','pending')"/>`
+	+   `<input type="radio" name="task-status-${taskName}" checked onChange="onChangeTaskStatus('${taskName}','pending')"/>`
 	+ `</div>`
 	+ `<div class="fx-col status-choice">`
 	+     `<p>Doing</p>`
-	+     `<input type="radio" name="task-status${loadedInsts}" onChange="onChangeTaskStatus('${taskName}','doing')"/>`
+	+     `<input type="radio" name="task-status-${taskName}" onChange="onChangeTaskStatus('${taskName}','doing')"/>`
 	+ `</div>`
 	+ `<div class="fx-col status-choice" style="padding-right:5px;">`
 	+     `<p>Done</p>`
-	+     `<input type="radio" name="task-status${loadedInsts}" onChange="onChangeTaskStatus('${taskName}','done')"/>`
+	+     `<input type="radio" name="task-status-${taskName}" onChange="onChangeTaskStatus('${taskName}','done')"/>`
 	+ `</div>`
 	+`</div>`
 	+`</div>`;
-    taskListObj.innerHTML +=taskInstHtml; 
-    loadedInsts+=1;
+    //Appending html code like this, prevents reset the input status of radio buttons.
+    let taskInstObj = document.createElement('template')
+    taskInstObj.innerHTML = taskInstHtml;
+    taskListObj.appendChild(taskInstObj.content.children[0]);
 }
 
 let disableUI = function(){
@@ -147,4 +147,4 @@ let onCancelRemoveTask = function(){
     enableUI();
 }
 
-console.log('js loadepointer-eventsd!');
+console.log('js loaded!');

@@ -17,27 +17,27 @@
    </div>
    <!-- New task prompt -->
    <div id="new-task-prompt" class="simple-prompt">
-       <form id='new-task-form'>
+       <!-- supress refreshing page on submit -->
+       <form id='new-task-form' onsubmit="return false">
 	   <p>Task name:</p>
 	   <input type="text" id="task-name-inpt" class="prompt-inpt" name="task-name" value="">
 	   <p>Task description:</p>
 	   <textarea id="task-description-inpt" class="prompt-inpt" name="task-description" value="" rows="6"></textarea>
 	   <br><br>
 	   <div class='fx-row'>
-	       <div class="prompt-btn accept-btn" onclick="onAcceptNewTask()">Accept</div>
-	       <div class="prompt-btn cancel-btn" onclick="onCancelNewTask()">Cancel</div>
+	       <input type="submit" class="prompt-btn accept-btn" value="Accept" onclick="onAcceptNewTask()"/>
+	       <input type="button" class="prompt-btn cancel-btn" value="Cancel" onclick="onCancelNewTask()"/>
 	   </div>
 	</form>
    </div>
-   <!--------------------->
    <!-----Delete task ---->
    <div id="delete-task-prompt" class="simple-prompt">
       <p>Remove task:</p>
       <select id="delete-task-select" class="prompt-inpt" style="min-width:25px" name="tasks" >
       </select>
       <div class="fx-row">
-	  <div class="prompt-btn negate-btn" onclick="onAcceptRemoveTask()">Delete!</div>
-	  <div class="prompt-btn cancel-btn" onclick="onCancelRemoveTask()">Cancel</div>
+	  <input type="button" class="prompt-btn negate-btn" value="Delete" onclick="onAcceptRemoveTask()"/>
+	  <input type="button" class="prompt-btn cancel-btn" value="Cancal" onclick="onCancelRemoveTask()"/>
       <div>
    </div>
    <!--------------------->

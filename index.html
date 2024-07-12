@@ -8,8 +8,8 @@
    <div id='page-header' class='fx-row'>
        <div id='page-title'>My todo list</div>  
        <div class='v-separator' style='width:6%'></div>
-       <div class='header-btn accept-btn' onclick='onNewTask()'>New task</div>
-       <div class='header-btn negate-btn' onclick='onRemoveTask()'>Remove task</div>  
+       <input type="button" class='header-btn accept-btn' value="New Task" onclick='onNewTask()'/>
+       <input type="button" class='header-btn negate-btn' value="Remove Task" onclick='onRemoveTask()'/>
        <div id='switch-theme'>o</div>  
    </div>
    <br><br>
@@ -37,7 +37,7 @@
       </select>
       <div class="fx-row">
 	  <input type="button" class="prompt-btn negate-btn" value="Delete" onclick="onAcceptRemoveTask()"/>
-	  <input type="button" class="prompt-btn cancel-btn" value="Cancal" onclick="onCancelRemoveTask()"/>
+	  <input type="button" class="prompt-btn cancel-btn" value="Cancel" onclick="onCancelRemoveTask()"/>
       <div>
    </div>
    <!--------------------->

@@ -79,9 +79,11 @@ body{
 }
 
 .header-btn{
+    color:#D2FACA;
     user-select:none;
     text-align:center;
     padding-top:15px;
+    border:none;
     width:10%;
     font-size:18px;
 }
@@ -154,7 +156,6 @@ body{
     height:20px;
     margin-top: 0px;
     margin-bottom:5px;
-    
 }
 
 .simple-prompt{
@@ -178,6 +179,7 @@ body{
     border:2px solid #3B4445;
     border-radius:4px;
     color:#D2FACA;
+    resize: none;
 }
 
 .prompt-btn{

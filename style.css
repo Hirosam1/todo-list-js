@@ -1,6 +1,6 @@
 body{
     margin:0px;
-    padding:15px;
+    padding:20px;
     background:#201F1C;
     color:#D2FACA;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
@@ -29,15 +29,32 @@ body{
 
 input.header-btn{
     text-wrap: wrap;
+    font-weight: 550;
 }
 
 #page-title{
     background:#567860;
-    text-align:center;
-    font-size:40px;
     width:40%;
-    padding:15px;
     border-top-left-radius:25px;
+}
+
+#page-title img{
+    height: 42px;
+    padding:10px;
+    padding-left:25px;
+}
+
+#page-title h1{
+    padding:5px;
+    margin:0px;
+    font-size:45px;
+    font-weight: 700;
+    width:100%;
+}
+
+#switch-theme img{
+    height: 38px;
+    padding:10px;
 }
 
 /* accept-btn */
@@ -168,7 +185,7 @@ input.header-btn{
     background:#687157;
     border-radius:10px;
     border:5px solid #3B352F;
-    bottom:25%;
+    top:10%;
     padding:25px;
     width:25%;
     min-width:300px;

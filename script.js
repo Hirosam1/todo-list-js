@@ -1,4 +1,3 @@
-console.log("starting js");
 const taskSep = ':';
 const pendingColor = '#B15A28';
 const doingColor   = '#9A901D';
@@ -7,12 +6,13 @@ const doneColor    = '#508932';
 //Reference for important objects
 let pageHeaderObj = document.getElementById('page-header');
 let taskListObj = document.getElementById('task-list');
-let newTaskPromptObj = document.getElementById('new-task-prompt');
 let newTaskFormObj = document.getElementById('new-task-form');
-let deleteTaskPromptObj = document.getElementById('delete-task-prompt');
 let deleteTaskSelectObj = document.getElementById('delete-task-select');
 let taskNameInptObj = document.getElementById('task-name-inpt');
 let taskDescriptionInptObj = document.getElementById('task-description-inpt');
+//Prompts
+let newTaskPromptObj = document.getElementById('new-task-prompt');
+let deleteTaskPromptObj = document.getElementById('delete-task-prompt');
 
 let removeSepFromName = function(taskNameFull){
     return taskNameFull.substring(0,taskNameFull.length-taskSep.length);
@@ -49,7 +49,7 @@ let loadRemovableTasksOpts = function(){
     deleteTaskSelectObj.innerHTML = optionsHtml;
 }
 
-let addTask = function(taskName, taskDescription){
+let addTask = function(taskName, taskDescription, taskStatus='pending'){
     //Push back HTML for a task
     let taskInstHtml =`<div class="task-inst fx-row">`
 	+`<div class="task-definition">`
@@ -62,15 +62,15 @@ let addTask = function(taskName, taskDescription){
 	+`<div class="task-status-choices fx-row" style="background:${pendingColor};">`
 	+` <div class="fx-col status-choice">`
 	+   `<p>Pending</p>`
-	+   `<input type="radio" name="task-status-${taskName}" value="pending" checked onChange="onChangeTaskStatus('${taskName}','pending')"/>`
+	+   `<input type="radio" name="task-status-${taskName}" value="pending" ${taskStatus==='pending'?'checked':''} checked onChange="onChangeTaskStatus('${taskName}','pending')"/>`
 	+ `</div>`
 	+ `<div class="fx-col status-choice">`
 	+     `<p>Doing</p>`
-	+     `<input type="radio" name="task-status-${taskName}" value="doing" onChange="onChangeTaskStatus('${taskName}','doing')"/>`
+	+     `<input type="radio" name="task-status-${taskName}" value="doing" ${taskStatus==='doing'?'checked':''} onChange="onChangeTaskStatus('${taskName}','doing')"/>`
 	+ `</div>`
 	+ `<div class="fx-col status-choice" style="padding-right:5px;">`
 	+     `<p>Done</p>`
-	+     `<input type="radio" name="task-status-${taskName}" value="done" onChange="onChangeTaskStatus('${taskName}','done')"/>`
+	+     `<input type="radio" name="task-status-${taskName}" value="done" ${taskStatus==='done'?'checked':''} onChange="onChangeTaskStatus('${taskName}','done')"/>`
 	+ `</div>`
 	+`</div>`
 	+`</div>`;
@@ -92,19 +92,35 @@ let enableUI = function(){
     taskListObj.style.pointerEvents='auto';
 }
 
-let onChangeTaskStatus = function(taskName, opt){
+let enablePrompt = function(promptObj){
+    promptObj.style.display='block';
+    promptObj.style.pointerEvents='auto';
+}
+
+let disablePrompt = function(promptObj){
+    promptObj.style.display='none';
+    promptObj.style.pointerEvents='none';
+}
+
+let changeTaskColorStat = function(taskName, opt){
     let taskObj = getTaskByName(taskName);
     if(taskObj != undefined){
 	let statusObj = taskObj.getElementsByClassName('task-status-choices')[0];
 	let taskColor = opt === 'pending' ? pendingColor : opt == 'doing' ? doingColor : doneColor;
 	statusObj.style.background = taskColor;
+	return true;
     }
+    return false;
 }
+
+let onChangeTaskStatus = function(taskName, opt){
+    if(changeTaskColorStat(taskName, opt)) saveTodoList();
+}
+
 
 let onNewTask = function(){
     disableUI();
-    //Enables visualization.
-    newTaskPromptObj.style.display='block';
+    enablePrompt(newTaskPromptObj);
 }
 
 let onAcceptNewTask = function(){
@@ -114,6 +130,7 @@ let onAcceptNewTask = function(){
     if(findTask === undefined){
 	if(taskName != ""){
 	    addTask(taskName, taskDescription);
+	    saveTodoList();
 	}
     }else{
 	alert(`Can't create tasks with the same name: ${taskName}`);
@@ -122,44 +139,46 @@ let onAcceptNewTask = function(){
     newTaskFormObj.reset();
     //Disables visualization.
     newTaskPromptObj.style.display='none';
+    disablePrompt(newTaskPromptObj);
     enableUI();
 }
 
 let onCancelNewTask = function(){
     newTaskFormObj.reset();
     newTaskPromptObj.style.display='none';
+    disablePrompt(newTaskPromptObj);
     enableUI();
 }
 
 let onRemoveTask = function(){
-    loadRemovableTasksOpts();
     disableUI();
-    deleteTaskPromptObj.style.display='block';
-    
+    loadRemovableTasksOpts();
+    enablePrompt(deleteTaskPromptObj);
 }
 
 let onAcceptRemoveTask = function(){
     let childObj = getTaskByName(deleteTaskSelectObj.value)
     if(childObj != undefined){
 	taskListObj.removeChild(childObj);
+	saveTodoList();
 	loadRemovableTasksOpts();
     }
 }
 
 let onCancelRemoveTask = function(){
-    deleteTaskPromptObj.style.display='none';
+    disablePrompt(deleteTaskPromptObj);
     enableUI();
 }
 
 function createTodo(taskName, taskDesc, taskStatus){
     let todo={};
     todo['taskName'] = taskName;
-    todo['taskDesc'] = taskDesc;
+    todo['taskDesc'] = taskDesc===undefined?'':taskDesc;
     todo['taskStatus'] = taskStatus;
     return todo;
 }
 
-let saveTodoList = function(){
+let saveTodoList = async function(){
     let todoList = [];
     for(let i = 0; i < taskListObj.children.length; i++){
 	let child = taskListObj.children[i];
@@ -167,13 +186,37 @@ let saveTodoList = function(){
 	let taskDesc = child.getElementsByClassName('task-description')[0].innerHTML;
 	let taskStatus = child.querySelector(`input[name="task-status-${taskName}"]:checked`);
 	if(taskStatus !== null){
-	    todoList.push(createTodo(taskName, taskDesc.substr(1,taskDesc.length), taskStatus.value));
+	    todoList.push(createTodo(taskName, taskDesc.substring(1,taskDesc.length), taskStatus.value));
 	}else{
 	    console.log(`Couldn't find query for:\ninput[name="task-status-${taskName}"]:checked`);
 	}
     }
-    let jsStr = JSON.stringify(todoList, null, 4);
-    console.log(`saving todo list:\n${jsStr}`);
+    let jsStr = JSON.stringify(todoList);
+    let resp = await fetch('/todo-list/save-todolist',{
+	    method: 'POST',
+	    headers: {'Content-Type': 'application/json'},
+	    body:jsStr});
+    if(resp.status === 200){
+    }else{
+	alert("Couldn't sync todo list");
+    }
+
 }
 
-console.log('js loaded!');
+let downloadTodoList = async function(){
+    let resp = await fetch('/todo-list/load-todolist') 
+    let statusCode = resp.status;
+    let body = await resp.json();
+    return {statusCode, body};
+}
+
+let loadFromTodoList = function(todoListArr){
+    for(let i=0; i<todoListArr.length; i++){
+	let todoInst = todoListArr[i];
+	addTask(todoInst['taskName'], todoInst['taskDesc'], todoInst['taskStatus']);
+	changeTaskColorStat(todoInst['taskName'],todoInst['taskStatus']);
+    }
+}
+//First load functions then start loading content to the page.
+//Download todoList from server and load it in the HTML.
+downloadTodoList().then(({statusCode, body})=>{loadFromTodoList(body);});

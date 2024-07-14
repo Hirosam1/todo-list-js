@@ -23,7 +23,7 @@ function linkPage(app, filePath, requestName, mimeType){
 const app = express();
 const jsonParser = bodyParser.json();
 
-//Route all web-page resources.
+//Route all web-page resources (URI).
 const homePage = '/todo-list';
 linkPage(app, './index.html', `${homePage}`, 'text/html');
 linkPage(app, './style.css',  `${homePage}/style.css`,'text/css');
@@ -33,7 +33,6 @@ linkPage(app, './day-night.png',`${homePage}/day-night.png`, 'image/png');
 
 //Web-service for loading the todolist for server memory.
 app.get(`${homePage}/load-todolist`, jsonParser, async (req, resp)=>{
-    console.log('uploading todolist...');
     const data = await readFile('./todo-list-save.js', 'utf8');
     resp.set('Content-Type', 'application/json');
     resp.send(data);
@@ -42,7 +41,6 @@ app.get(`${homePage}/load-todolist`, jsonParser, async (req, resp)=>{
 //Web-service for saving the todolist on the server memory. We expect the POST command.
 //We expect a json file as the body, so we use the jsonParsr.
 app.post(`${homePage}/save-todolist`, jsonParser, async(req, resp)=>{
-    console.log('saving todolist...');
     let postStr = JSON.stringify(req.body, null, 4);
     await writeFile('./todo-list-save.js', postStr); 
     resp.sendStatus(200);

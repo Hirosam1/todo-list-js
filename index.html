@@ -19,12 +19,13 @@
    <div id="new-task-prompt" class="simple-prompt">
        <!-- supress refreshing page on submit -->
        <form id='new-task-form' onsubmit="return false">
+	   <h2>New task</h2>
 	   <p>Task name:</p>
 	   <input type="text" id="task-name-inpt" class="prompt-inpt" name="task-name" value="">
 	   <p>Task description:</p>
 	   <textarea id="task-description-inpt" class="prompt-inpt" name="task-description" value="" rows="6"></textarea>
 	   <br><br>
-	   <div class='fx-row'>
+	   <div class='fx-row', style='padding:0px;'>
 	       <input type="submit" class="prompt-btn accept-btn" value="Accept" onclick="onAcceptNewTask()"/>
 	       <input type="button" class="prompt-btn cancel-btn" value="Cancel" onclick="onCancelNewTask()"/>
 	   </div>
@@ -38,10 +39,23 @@
       <div class="fx-row">
 	  <input type="button" class="prompt-btn negate-btn" value="Delete" onclick="onAcceptRemoveTask()"/>
 	  <input type="button" class="prompt-btn cancel-btn" value="Cancel" onclick="onCancelRemoveTask()"/>
-      <div>
+      </div>
    </div>
    <!------Edit task------>
-
+   <div id="edit-task-prompt" class='simple-prompt'>
+       <form id='edit-task-form' onsubmit="return false">
+	   <h2>Edit task</h2>
+	   <p>Task name:</p>
+	   <input type="text" id="task-name-inpt-edit" class="prompt-inpt" name="task-name-edit" value="">
+	   <p>Task description:</p>
+	   <textarea id="task-description-inpt-edit" class="prompt-inpt" name="task-description-edit" value="" rows="6"></textarea>
+	   <br><br>
+	   <div class='fx-row'>
+	       <input type="submit" class="prompt-btn accept-btn" value="Accept" onclick="onAcceptEditTask()"/>
+	       <input type="button" class="prompt-btn cancel-btn" value="Cancel" onclick="onCancelPrompt(this, true)"/>
+	   </div>
+	</form>
+   </div>
    <!--------------------->
    <script src='todo-list/script.js'></script>
   </body>

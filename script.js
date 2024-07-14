@@ -14,6 +14,8 @@ let taskDescriptionInptObj = document.getElementById('task-description-inpt');
 let newTaskPromptObj = document.getElementById('new-task-prompt');
 let deleteTaskPromptObj = document.getElementById('delete-task-prompt');
 
+let myTodoList = [];
+
 let removeSepFromName = function(taskNameFull){
     return taskNameFull.substring(0,taskNameFull.length-taskSep.length);
 }
@@ -117,7 +119,6 @@ let onChangeTaskStatus = function(taskName, opt){
     if(changeTaskColorStat(taskName, opt)) saveTodoList();
 }
 
-
 let onNewTask = function(){
     disableUI();
     enablePrompt(newTaskPromptObj);
@@ -131,6 +132,7 @@ let onAcceptNewTask = function(){
 	if(taskName != ""){
 	    addTask(taskName, taskDescription);
 	    saveTodoList();
+	    myTodoList.push(createTodo(taskName, taskDescription));
 	}
     }else{
 	alert(`Can't create tasks with the same name: ${taskName}`);
@@ -157,25 +159,23 @@ let onRemoveTask = function(){
 }
 
 let onAcceptRemoveTask = function(){
-    let childObj = getTaskByName(deleteTaskSelectObj.value)
+    let taskName = deleteTaskSelectObj.value;
+    let childObj = getTaskByName(taskName)
     if(childObj != undefined){
 	taskListObj.removeChild(childObj);
 	saveTodoList();
 	loadRemovableTasksOpts();
+	for(let i=0;i<myTodoList.length;i++){
+	    if(myTodoList[i]['taskName']===taskName){
+		myTodoList.splice(i,1);
+	    }
+	}
     }
 }
 
 let onCancelRemoveTask = function(){
     disablePrompt(deleteTaskPromptObj);
     enableUI();
-}
-
-function createTodo(taskName, taskDesc, taskStatus){
-    let todo={};
-    todo['taskName'] = taskName;
-    todo['taskDesc'] = taskDesc===undefined?'':taskDesc;
-    todo['taskStatus'] = taskStatus;
-    return todo;
 }
 
 let saveTodoList = async function(){
@@ -219,4 +219,4 @@ let loadFromTodoList = function(todoListArr){
 }
 //First load functions then start loading content to the page.
 //Download todoList from server and load it in the HTML.
-downloadTodoList().then(({statusCode, body})=>{loadFromTodoList(body);});
+downloadTodoList().then(({statusCode, body})=>{myTodoList=body; loadFromTodoList(body);});

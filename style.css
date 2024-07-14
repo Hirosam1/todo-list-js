@@ -23,7 +23,7 @@ body{
 /* Header stuff  */
 #page-header{
     justify-content: center;
-    padding-bottom:10px;
+    margin-bottom:20px;
     width:100%;
 }
 
@@ -34,18 +34,18 @@ input.header-btn{
 
 #page-title{
     background:#567860;
-    width:40%;
+    width:33%;
     border-top-left-radius:25px;
 }
 
 #page-title img{
-    height: 42px;
+    height: 45px;
     padding:10px;
     padding-left:25px;
 }
 
 #page-title h1{
-    padding:5px;
+    padding:8px;
     margin:0px;
     font-size:45px;
     font-weight: 700;
@@ -55,6 +55,22 @@ input.header-btn{
 #switch-theme img{
     height: 38px;
     padding:10px;
+}
+
+.header-btn{
+    color:#D2FACA;
+    user-select:none;
+    text-align:center;
+    border:none;
+    width:13%;
+    font-size:18px;
+}
+
+#switch-theme{
+    text-align:center;
+    background:#868E59;
+    width:20%;
+    border-top-right-radius:25px;
 }
 
 /* accept-btn */
@@ -97,22 +113,6 @@ input.header-btn{
 
 .cancel-btn:active{
     background:#655209;
-}
-
-.header-btn{
-    color:#D2FACA;
-    user-select:none;
-    text-align:center;
-    border:none;
-    width:10%;
-    font-size:18px;
-}
-
-#switch-theme{
-    text-align:center;
-    background:#868E59;
-    width:20%;
-    border-top-right-radius:25px;
 }
 
 /* Tasks stuff  */
@@ -186,12 +186,25 @@ input.header-btn{
     border-radius:10px;
     border:5px solid #3B352F;
     top:10%;
-    padding:25px;
-    width:25%;
+    padding:18px;
+    width:30%;
     min-width:300px;
     font-weight:700;
     font-size:20px;
     display:none;
+}
+
+.simple-prompt form h2{
+    margin-top:7px;
+    font-size:25px;
+}
+
+.simple-prompt form p{
+    font-size:17px;
+}
+
+.simple-prompt select{
+    margin-bottom:30px;
 }
 
 .prompt-inpt{
@@ -201,12 +214,14 @@ input.header-btn{
     border-radius:4px;
     color:#D2FACA;
     resize: none;
+    margin-bottom:5px;
 }
 
 .prompt-btn{
     user-select:none;
     width:80px;
     margin:7px;
+    margin-top:15px;
     color:#D2FACA;
     padding:10px;
     font-size:18px;

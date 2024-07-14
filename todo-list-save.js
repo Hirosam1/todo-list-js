@@ -1,27 +1,32 @@
 [
     {
-        "taskName": "Comprar sacola de mercado",
-        "taskDesc": "Para nao ficar acumulando um monte de sacola plastica.",
-        "taskStatus": "pending"
-    },
-    {
         "taskName": "Comprar cartao SD",
         "taskDesc": "Cartao SD para crackear o 3DS, denovo.",
         "taskStatus": "pending"
     },
     {
-        "taskName": "Comprar pantufas",
-        "taskDesc": "Pantufas para o inverno. :&gt;",
+        "taskName": "Sacolas de mercado",
+        "taskDesc": "Sacolas de mercado para reduzir o lixo plastico.",
         "taskStatus": "pending"
     },
     {
-        "taskName": "task aux1",
-        "taskDesc": "",
+        "taskName": "Modulate script",
+        "taskDesc": "Create different files of the clients js scripts, import and uses functions of them. Also think about re-structuring file hierarchy structure. ",
+        "taskStatus": "doing"
+    },
+    {
+        "taskName": "Website responsivness",
+        "taskDesc": "Make the layout of the website more responsive, not only for desktop, but for mobile as well.",
+        "taskStatus": "pending"
+    },
+    {
+        "taskName": "Structurize todo data",
+        "taskDesc": "Have a structural data representative of the visable html loaded at the memory.",
         "taskStatus": "done"
     },
     {
-        "taskName": "task aux2",
-        "taskDesc": "",
-        "taskStatus": "doing"
+        "taskName": "Make server configurable",
+        "taskDesc": "Have server accept argument parameters.",
+        "taskStatus": "pending"
     }
 ]

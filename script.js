@@ -14,6 +14,23 @@ let taskDescriptionInptObj = document.getElementById('task-description-inpt');
 let newTaskPromptObj = document.getElementById('new-task-prompt');
 let deleteTaskPromptObj = document.getElementById('delete-task-prompt');
 
+function createTodo(taskName, taskDesc='', taskStatus='pending'){
+    let todo={};
+    todo['taskName'] = taskName;
+    todo['taskDesc'] = taskDesc;
+    todo['taskStatus'] = taskStatus;
+    return todo;
+}
+
+function indexOfTaskName(todoList, taskName){
+    for(let i=0;i<todoList.length;i++){
+	if(myTodoList[i]['taskName']===taskName){
+	    return i;
+	}
+    }
+    return -1;
+}
+
 let myTodoList = [];
 
 let removeSepFromName = function(taskNameFull){
@@ -116,7 +133,12 @@ let changeTaskColorStat = function(taskName, opt){
 }
 
 let onChangeTaskStatus = function(taskName, opt){
-    if(changeTaskColorStat(taskName, opt)) saveTodoList();
+    let i = indexOfTaskName(myTodoList,taskName);
+    if(i!=-1){
+	myTodoList[i]['taskStatus']=opt;
+	changeTaskColorStat(taskName, opt);
+	saveTodoList();
+    }
 }
 
 let onNewTask = function(){
@@ -131,8 +153,8 @@ let onAcceptNewTask = function(){
     if(findTask === undefined){
 	if(taskName != ""){
 	    addTask(taskName, taskDescription);
-	    saveTodoList();
 	    myTodoList.push(createTodo(taskName, taskDescription));
+	    saveTodoList();
 	}
     }else{
 	alert(`Can't create tasks with the same name: ${taskName}`);
@@ -160,16 +182,13 @@ let onRemoveTask = function(){
 
 let onAcceptRemoveTask = function(){
     let taskName = deleteTaskSelectObj.value;
-    let childObj = getTaskByName(taskName)
-    if(childObj != undefined){
+    let childObj = getTaskByName(taskName);
+    let i = indexOfTaskName(myTodoList,taskName);
+    if(childObj != undefined & i!=-1){
 	taskListObj.removeChild(childObj);
+	myTodoList.splice(i,1);
 	saveTodoList();
 	loadRemovableTasksOpts();
-	for(let i=0;i<myTodoList.length;i++){
-	    if(myTodoList[i]['taskName']===taskName){
-		myTodoList.splice(i,1);
-	    }
-	}
     }
 }
 
@@ -180,18 +199,18 @@ let onCancelRemoveTask = function(){
 
 let saveTodoList = async function(){
     let todoList = [];
-    for(let i = 0; i < taskListObj.children.length; i++){
-	let child = taskListObj.children[i];
-	let taskName = removeSepFromName(child.getElementsByClassName('task-name')[0].innerHTML);
-	let taskDesc = child.getElementsByClassName('task-description')[0].innerHTML;
-	let taskStatus = child.querySelector(`input[name="task-status-${taskName}"]:checked`);
-	if(taskStatus !== null){
-	    todoList.push(createTodo(taskName, taskDesc.substring(1,taskDesc.length), taskStatus.value));
-	}else{
-	    console.log(`Couldn't find query for:\ninput[name="task-status-${taskName}"]:checked`);
-	}
-    }
-    let jsStr = JSON.stringify(todoList);
+ //    for(let i = 0; i < taskListObj.children.length; i++){
+	// let child = taskListObj.children[i];
+	// let taskName = removeSepFromName(child.getElementsByClassName('task-name')[0].innerHTML);
+	// let taskDesc = child.getElementsByClassName('task-description')[0].innerHTML;
+	// let taskStatus = child.querySelector(`input[name="task-status-${taskName}"]:checked`);
+	// if(taskStatus !== null){
+	//     todoList.push(createTodo(taskName, taskDesc.substring(1,taskDesc.length), taskStatus.value));
+	// }else{
+	//     console.log(`Couldn't find query for:\ninput[name="task-status-${taskName}"]:checked`);
+	// }
+ //    }
+    let jsStr = JSON.stringify(myTodoList);
     let resp = await fetch('/todo-list/save-todolist',{
 	    method: 'POST',
 	    headers: {'Content-Type': 'application/json'},

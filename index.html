@@ -42,8 +42,8 @@
       </div>
    </div>
    <!------Edit task------>
-   <div id="edit-task-prompt" class='simple-prompt'>
-       <form id='edit-task-form' onsubmit="return false">
+   <div id="edit-task-prompt" class="simple-prompt">
+       <form id="edit-task-form" onsubmit="return false">
 	   <h2>Edit task</h2>
 	   <p>Task name:</p>
 	   <input type="text" id="task-name-inpt-edit" class="prompt-inpt" name="task-name-edit" value="">
@@ -52,7 +52,7 @@
 	   <br><br>
 	   <div class='fx-row'>
 	       <input type="submit" class="prompt-btn accept-btn" value="Accept" onclick="onAcceptEditTask()"/>
-	       <input type="button" class="prompt-btn cancel-btn" value="Cancel" onclick="onCancelPrompt(this, true)"/>
+	       <input type="button" class="prompt-btn cancel-btn" value="Cancel" onclick="onCancelEditTask()"/>
 	   </div>
 	</form>
    </div>

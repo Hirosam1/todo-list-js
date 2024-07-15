@@ -1,4 +1,4 @@
-const taskSep = ':';
+const taskSep = ': ';
 const pendingColor = '#B15A28';
 const doingColor   = '#9A901D';
 const doneColor    = '#508932';
@@ -79,7 +79,7 @@ htmlGenerator.addTask = function(taskName, taskDescription, taskStatus='pending'
 	+`<div class="task-definition" onclick="onTaskClick(this)")>`
 	+`<p>`
 	+`<span class="task-name">${taskName}${taskSep}</span>`
-	+`<span class="task-description"> ${taskDescription}</span>`
+	+`<span class="task-description">${taskDescription}</span>`
 	+`</p>`
 	+`</div>`
 	+`<div class="v-separator" style="width:15px"></div>`
@@ -116,12 +116,12 @@ let enableUI = function(){
     taskListObj.style.pointerEvents='auto';
 }
 
+let clickedTaskObj=undefined;
 let enablePrompt = function(promptObj){
     promptObj.style.display='block';
     promptObj.style.pointerEvents='auto';
 }
 
-let clickedTaskObj=undefined;
 let disablePrompt = function(promptObj){
     promptObj.style.display='none';
     promptObj.style.pointerEvents='none';
@@ -200,7 +200,7 @@ let onAcceptNewTask = function(){
 	alert(`Can't create tasks with the same name: ${taskName}`);
 	return;
     }
-    newTaskFormObj.reset();
+    newTaskPromptObj.reset();
     //Disables visualization.
     disablePrompt(newTaskPromptObj);
     enableUI();

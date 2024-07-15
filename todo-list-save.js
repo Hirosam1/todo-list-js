@@ -6,7 +6,7 @@
     },
     {
         "taskName": "Sacolas de mercado",
-        "taskDesc": "Sacolas de mercado para reduzir o lixo plastico.",
+        "taskDesc": "Sacolas de mercado para reduzir o lixo plastico. Melhorando o meio ambiente.",
         "taskStatus": "pending"
     },
     {

@@ -10,9 +10,12 @@ let newTaskFormObj = document.getElementById('new-task-form');
 let deleteTaskSelectObj = document.getElementById('delete-task-select');
 let taskNameInptObj = document.getElementById('task-name-inpt');
 let taskDescriptionInptObj = document.getElementById('task-description-inpt');
+let editTaskNameInptObj = document.getElementById('edit-task-name-inpt');
+let editTaskDescInptObj = document.getElementById('edit-task-description-inpt');
 //Prompts
 let newTaskPromptObj = document.getElementById('new-task-prompt');
 let deleteTaskPromptObj = document.getElementById('delete-task-prompt');
+let editTaskPromptObj = document.getElementById('edit-task-prompt');
 
 function createTodo(taskName, taskDesc='', taskStatus='pending'){
     let todo={};
@@ -49,7 +52,9 @@ let getTaskByName = function(taskName){
     return undefined;
 }
 
-let loadRemovableTasksOpts = function(){
+//Namespace for code that writes in the html code.
+let htmlGenerator = {}
+htmlGenerator.loadRemovableTasksOpts = function(){
     let optionsHtml = ''
     if (taskListObj.children.length > 0){
 	for(let i = 0; i < taskListObj.children.length; i++){
@@ -68,10 +73,10 @@ let loadRemovableTasksOpts = function(){
     deleteTaskSelectObj.innerHTML = optionsHtml;
 }
 
-let addTask = function(taskName, taskDescription, taskStatus='pending'){
+htmlGenerator.addTask = function(taskName, taskDescription, taskStatus='pending'){
     //Push back HTML for a task
     let taskInstHtml =`<div class="task-inst fx-row">`
-	+`<div class="task-definition">`
+	+`<div class="task-definition" onclick="onTaskClick(this)")>`
 	+`<p>`
 	+`<span class="task-name">${taskName}${taskSep}</span>`
 	+`<span class="task-description"> ${taskDescription}</span>`
@@ -116,9 +121,11 @@ let enablePrompt = function(promptObj){
     promptObj.style.pointerEvents='auto';
 }
 
+let clickedTaskObj=undefined;
 let disablePrompt = function(promptObj){
     promptObj.style.display='none';
     promptObj.style.pointerEvents='none';
+    clickedTaskObj=undefined;
 }
 
 let changeTaskColorStat = function(taskName, opt){
@@ -130,6 +137,37 @@ let changeTaskColorStat = function(taskName, opt){
 	return true;
     }
     return false;
+}
+
+let onTaskClick = function(taskObj){
+    let taskName = removeSepFromName(taskObj.getElementsByClassName('task-name')[0].innerHTML);
+    clickedTaskObj = taskObj;
+    let i = indexOfTaskName(myTodoList,taskName);
+    let taskDesc = myTodoList[i]['taskDesc'];
+    editTaskNameInptObj.value=taskName;
+    editTaskDescInptObj.value=taskDesc;
+    enablePrompt(editTaskPromptObj);
+}
+
+let onAcceptEditTask = function(){
+    let taskName = removeSepFromName(clickedTaskObj.getElementsByClassName('task-name')[0].innerHTML);
+    let newTaskName = editTaskNameInptObj.value;
+    let newTaskDesc = editTaskDescInptObj.value;
+    let i = indexOfTaskName(myTodoList,taskName);
+    if(i!=-1){
+	if(newTaskName === taskName){
+	    clickedTaskObj.getElementsByClassName('task-description')[0].innerHTML = ` ${newTaskDesc}`;
+	    myTodoList[i]['taskDesc'] = newTaskDesc; 
+	}
+	else{
+	    myTodoList[i]['taskName'] = newTaskName;
+	    myTodoList[i]['taskDesc'] = newTaskDesc;
+	    clickedTaskObj.getElementsByClassName('task-name')[0].innerHTML = `${newTaskDesc}${taskSep}`;
+	    clickedTaskObj.getElementsByClassName('task-description')[0].innerHTML = ` ${newTaskDesc}`;
+	}
+    }
+    saveTodoList();
+    disablePrompt(editTaskPromptObj);
 }
 
 let onChangeTaskStatus = function(taskName, opt){
@@ -152,7 +190,7 @@ let onAcceptNewTask = function(){
     let findTask = getTaskByName(taskName);
     if(findTask === undefined){
 	if(taskName != ""){
-	    addTask(taskName, taskDescription);
+	    htmlGenerator.addTask(taskName, taskDescription);
 	    myTodoList.push(createTodo(taskName, taskDescription));
 	    saveTodoList();
 	}
@@ -162,21 +200,26 @@ let onAcceptNewTask = function(){
     }
     newTaskFormObj.reset();
     //Disables visualization.
-    newTaskPromptObj.style.display='none';
     disablePrompt(newTaskPromptObj);
     enableUI();
 }
 
 let onCancelNewTask = function(){
     newTaskFormObj.reset();
-    newTaskPromptObj.style.display='none';
     disablePrompt(newTaskPromptObj);
+    enableUI();
+}
+
+let onCancelPrompt = function(promptName){
+    let promptObj = document.getElementById(promptName);
+    promptObj.reset();
+    disablePrompt(promptObj);
     enableUI();
 }
 
 let onRemoveTask = function(){
     disableUI();
-    loadRemovableTasksOpts();
+    htmlGenerator.loadRemovableTasksOpts();
     enablePrompt(deleteTaskPromptObj);
 }
 
@@ -188,7 +231,7 @@ let onAcceptRemoveTask = function(){
 	taskListObj.removeChild(childObj);
 	myTodoList.splice(i,1);
 	saveTodoList();
-	loadRemovableTasksOpts();
+	htmlGenerator.loadRemovableTasksOpts();
     }
 }
 
@@ -197,19 +240,15 @@ let onCancelRemoveTask = function(){
     enableUI();
 }
 
+let loadFromTodoList = function(todoListArr){
+    for(let i=0; i<todoListArr.length; i++){
+	let todoInst = todoListArr[i];
+	htmlGenerator.addTask(todoInst['taskName'], todoInst['taskDesc'], todoInst['taskStatus']);
+	changeTaskColorStat(todoInst['taskName'],todoInst['taskStatus']);
+    }
+}
+
 let saveTodoList = async function(){
-    let todoList = [];
- //    for(let i = 0; i < taskListObj.children.length; i++){
-	// let child = taskListObj.children[i];
-	// let taskName = removeSepFromName(child.getElementsByClassName('task-name')[0].innerHTML);
-	// let taskDesc = child.getElementsByClassName('task-description')[0].innerHTML;
-	// let taskStatus = child.querySelector(`input[name="task-status-${taskName}"]:checked`);
-	// if(taskStatus !== null){
-	//     todoList.push(createTodo(taskName, taskDesc.substring(1,taskDesc.length), taskStatus.value));
-	// }else{
-	//     console.log(`Couldn't find query for:\ninput[name="task-status-${taskName}"]:checked`);
-	// }
- //    }
     let jsStr = JSON.stringify(myTodoList);
     let resp = await fetch('/todo-list/save-todolist',{
 	    method: 'POST',
@@ -229,13 +268,6 @@ let downloadTodoList = async function(){
     return {statusCode, body};
 }
 
-let loadFromTodoList = function(todoListArr){
-    for(let i=0; i<todoListArr.length; i++){
-	let todoInst = todoListArr[i];
-	addTask(todoInst['taskName'], todoInst['taskDesc'], todoInst['taskStatus']);
-	changeTaskColorStat(todoInst['taskName'],todoInst['taskStatus']);
-    }
-}
 //First load functions then start loading content to the page.
 //Download todoList from server and load it in the HTML.
 downloadTodoList().then(({statusCode, body})=>{myTodoList=body; loadFromTodoList(body);});

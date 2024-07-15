@@ -16,46 +16,43 @@
    <div id='task-list' class='fx-col'>
    </div>
    <!-- New task prompt -->
-   <div id="new-task-prompt" class="simple-prompt">
+   <form id="new-task-prompt" class="simple-prompt" onsubmit="return false">
        <!-- supress refreshing page on submit -->
-       <form id='new-task-form' onsubmit="return false">
-	   <h2>New task</h2>
-	   <p>Task name:</p>
-	   <input type="text" id="task-name-inpt" class="prompt-inpt" name="task-name" value="">
-	   <p>Task description:</p>
-	   <textarea id="task-description-inpt" class="prompt-inpt" name="task-description" value="" rows="6"></textarea>
-	   <br><br>
-	   <div class='fx-row', style='padding:0px;'>
-	       <input type="submit" class="prompt-btn accept-btn" value="Accept" onclick="onAcceptNewTask()"/>
-	       <input type="button" class="prompt-btn cancel-btn" value="Cancel" onclick="onCancelNewTask()"/>
-	   </div>
-	</form>
-   </div>
+       <h2>New task</h2>
+       <p>Task name:</p>
+       <input type="text" id="task-name-inpt" class="prompt-inpt" name="task-name" value="">
+       <p>Task description:</p>
+       <textarea id="task-description-inpt" class="prompt-inpt" name="task-description" value="" rows="6"></textarea>
+       <br><br>
+       <div class='fx-row', style='padding:0px;'>
+	   <input type="submit" class="prompt-btn accept-btn" value="Accept" onclick="onAcceptNewTask()"/>
+	   <!-- <input type="button" class="prompt-btn cancel-btn" value="Cancel" onclick="onCancelNewTask()"/> -->
+	   <input type="button" class="prompt-btn cancel-btn" value="Cancel" onclick="onCancelPrompt('new-task-prompt')"/>
+       </div>
+   </form>
    <!-----Delete task ---->
-   <div id="delete-task-prompt" class="simple-prompt">
+   <form id="delete-task-prompt" class="simple-prompt" onsubmit="return false">
       <p>Remove task:</p>
       <select id="delete-task-select" class="prompt-inpt" style="min-width:25px" name="tasks" >
       </select>
       <div class="fx-row">
 	  <input type="button" class="prompt-btn negate-btn" value="Delete" onclick="onAcceptRemoveTask()"/>
-	  <input type="button" class="prompt-btn cancel-btn" value="Cancel" onclick="onCancelRemoveTask()"/>
+	  <input type="button" class="prompt-btn cancel-btn" value="Cancel" onclick="onCancelPrompt('delete-task-prompt')"/>
       </div>
-   </div>
+   </form>
    <!------Edit task------>
-   <div id="edit-task-prompt" class="simple-prompt">
-       <form id="edit-task-form" onsubmit="return false">
-	   <h2>Edit task</h2>
-	   <p>Task name:</p>
-	   <input type="text" id="task-name-inpt-edit" class="prompt-inpt" name="task-name-edit" value="">
-	   <p>Task description:</p>
-	   <textarea id="task-description-inpt-edit" class="prompt-inpt" name="task-description-edit" value="" rows="6"></textarea>
-	   <br><br>
-	   <div class='fx-row'>
-	       <input type="submit" class="prompt-btn accept-btn" value="Accept" onclick="onAcceptEditTask()"/>
-	       <input type="button" class="prompt-btn cancel-btn" value="Cancel" onclick="onCancelEditTask()"/>
-	   </div>
-	</form>
-   </div>
+   <form id="edit-task-prompt" class="simple-prompt" onsubmit="return false">
+       <h2>Edit task</h2>
+       <p>Task name:</p>
+       <input type="text" id="edit-task-name-inpt" class="prompt-inpt" name="edit-task-name" value="">
+       <p>Task description:</p>
+       <textarea id="edit-task-description-inpt" class="prompt-inpt" name="edit-task-description" value="" rows="6"></textarea>
+       <br><br>
+       <div class='fx-row'>
+	   <input type="submit" class="prompt-btn accept-btn" value="Accept" onclick="onAcceptEditTask()"/>
+	   <input type="button" class="prompt-btn cancel-btn" value="Cancel" onclick="onCancelPrompt('edit-task-prompt')"/>
+       </div>
+   </form>
    <!--------------------->
    <script src='todo-list/script.js'></script>
   </body>

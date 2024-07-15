@@ -142,7 +142,7 @@ let changeTaskColorStat = function(taskName, opt){
 let onTaskClick = function(taskObj){
     let taskName = removeSepFromName(taskObj.getElementsByClassName('task-name')[0].innerHTML);
     clickedTaskObj = taskObj;
-    let i = indexOfTaskName(myTodoList,taskName);
+    let i = indexOfTaskName(myTodoList, taskName);
     let taskDesc = myTodoList[i]['taskDesc'];
     editTaskNameInptObj.value=taskName;
     editTaskDescInptObj.value=taskDesc;
@@ -163,7 +163,7 @@ let onAcceptEditTask = function(){
 	else{
 	    myTodoList[i]['taskName'] = newTaskName;
 	    myTodoList[i]['taskDesc'] = newTaskDesc;
-	    clickedTaskObj.getElementsByClassName('task-name')[0].innerHTML = `${newTaskDesc}${taskSep}`;
+	    clickedTaskObj.getElementsByClassName('task-name')[0].innerHTML = `${newTaskName}${taskSep}`;
 	    clickedTaskObj.getElementsByClassName('task-description')[0].innerHTML = ` ${newTaskDesc}`;
 	}
     }

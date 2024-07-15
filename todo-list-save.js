@@ -1,12 +1,12 @@
 [
     {
         "taskName": "Comprar cartao SD",
-        "taskDesc": "Cartao SD para crackear o 3DS, denovo.",
+        "taskDesc": "Cartao SD para crackear o 3DS, denovo. E instalar jogos e até o flipnote. :]",
         "taskStatus": "pending"
     },
     {
-        "taskName": "Sacolas de mercado",
-        "taskDesc": "Sacolas de mercado para reduzir o lixo plastico. Melhorando o meio ambiente.",
+        "taskName": "Comprar sacolas de mercado",
+        "taskDesc": "Sacolas de mercado reutilizáveis para reduzir o lixo plastico. Melhorando o meio ambiente.",
         "taskStatus": "pending"
     },
     {
@@ -18,11 +18,6 @@
         "taskName": "Website responsivness",
         "taskDesc": "Make the layout of the website more responsive, not only for desktop, but for mobile as well.",
         "taskStatus": "pending"
-    },
-    {
-        "taskName": "Structurize todo data",
-        "taskDesc": "Have a structural data representative of the visable html loaded at the memory.",
-        "taskStatus": "done"
     },
     {
         "taskName": "Make server configurable",

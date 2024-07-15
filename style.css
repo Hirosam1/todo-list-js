@@ -183,24 +183,23 @@ input.header-btn{
     position:fixed;
     left:35%;
     background:#687157;
-    border-radius:10px;
+    border-radius:8px;
     border:5px solid #3B352F;
-    top:10%;
-    padding:18px;
+    top:9%;
+    padding:15px;
     width:30%;
     min-width:300px;
-    font-weight:700;
-    font-size:20px;
     display:none;
 }
 
-.simple-prompt form h2{
+.simple-prompt h2{
     margin-top:7px;
-    font-size:25px;
+    font-size:21px;
 }
 
-.simple-prompt form p{
-    font-size:17px;
+.simple-prompt p{
+    font-size:15px;
+    font-weight:500;
 }
 
 .simple-prompt select{
@@ -214,6 +213,7 @@ input.header-btn{
     border-radius:4px;
     color:#D2FACA;
     resize: none;
+    padding:7px;
     margin-bottom:5px;
 }
 

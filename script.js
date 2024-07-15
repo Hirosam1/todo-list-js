@@ -146,6 +146,7 @@ let onTaskClick = function(taskObj){
     let taskDesc = myTodoList[i]['taskDesc'];
     editTaskNameInptObj.value=taskName;
     editTaskDescInptObj.value=taskDesc;
+    disableUI();
     enablePrompt(editTaskPromptObj);
 }
 
@@ -168,6 +169,7 @@ let onAcceptEditTask = function(){
     }
     saveTodoList();
     disablePrompt(editTaskPromptObj);
+    enableUI();
 }
 
 let onChangeTaskStatus = function(taskName, opt){

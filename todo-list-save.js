@@ -11,7 +11,7 @@
     },
     {
         "taskName": "Modulate script",
-        "taskDesc": "Create different files of the clients js scripts, import and uses functions of them. Also think about re-structuring file hierarchy structure. ",
+        "taskDesc": "Create different files of the clients js scripts, import and uses functions of them. Also think about re-structuring file hierarchy structure.",
         "taskStatus": "doing"
     },
     {

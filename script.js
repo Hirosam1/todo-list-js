@@ -154,7 +154,7 @@ let onAcceptEditTask = function(){
     let newTaskName = editTaskNameInptObj.value;
     let newTaskDesc = editTaskDescInptObj.value;
     let i = indexOfTaskName(myTodoList,taskName);
-    if(i!=-1){
+    if(i!=-1 && newTaskName!=''){
 	if(newTaskName === taskName){
 	    clickedTaskObj.getElementsByClassName('task-description')[0].innerHTML = ` ${newTaskDesc}`;
 	    myTodoList[i]['taskDesc'] = newTaskDesc; 

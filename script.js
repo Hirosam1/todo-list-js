@@ -265,7 +265,7 @@ function array_move(arr, old_index, new_index) {
 
 let onMoveUp = function(taskName){
     let i = indexOfTaskName(myTodoList,taskName);
-    if(i>=0){
+    if(i>=0 && i > 0){
 	myTodoList = array_move(myTodoList,i,i-1);
 	clearChilds(taskListObj);
 	loadFromTodoList(myTodoList);
@@ -275,7 +275,7 @@ let onMoveUp = function(taskName){
 
 let onMoveDown = function(taskName){
     let i = indexOfTaskName(myTodoList,taskName);
-    if(i>=0){
+    if(i>=0 && i < myTodoList.length - 1){
 	myTodoList = array_move(myTodoList,i,i+1);
 	clearChilds(taskListObj);
 	loadFromTodoList(myTodoList);

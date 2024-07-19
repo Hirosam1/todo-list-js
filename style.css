@@ -34,7 +34,7 @@ input.header-btn{
 
 #page-title{
     background:#567860;
-    width:33%;
+    width:36%;
     border-top-left-radius:25px;
 }
 
@@ -52,11 +52,6 @@ input.header-btn{
     width:100%;
 }
 
-#switch-theme img{
-    height: 45px;
-    padding:10px;
-}
-
 .header-btn{
     color:#D2FACA;
     user-select:none;
@@ -70,8 +65,15 @@ input.header-btn{
     text-align:center;
     background:#8C6F43;
     width:20%;
+    justify-content: space-evenly;
     border-top-right-radius:25px;
 }
+
+#switch-theme img{
+    height: 50px;
+    padding:10px;
+}
+
 
 /* accept-btn */
 .accept-btn{

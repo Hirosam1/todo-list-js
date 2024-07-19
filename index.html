@@ -2,6 +2,7 @@
 <html>
     <head>
    <title>My todo</title>
+   <link rel='icon' type='image/svg+xml' href='todo-list/todo-list-icon.svg'>
    <link rel='stylesheet' href='todo-list/style.css'>
     </head>
    <body>
@@ -10,7 +11,7 @@
        <div class='v-separator' style='width:6%'></div>
        <input type="button" class='header-btn accept-btn' value="New Task" onclick='onNewTask()'/>
        <input type="button" class='header-btn negate-btn' value="Remove Task" onclick='onRemoveTask()'/>
-       <div id='switch-theme'><img src="todo-list/day-night.svg" alt=""></div>
+       <div id='switch-theme' class="fx-col"><img src="todo-list/day-night.svg" alt=""></div>
    </div>
    <br><br>
    <div id='task-list' class='fx-col'>

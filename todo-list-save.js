@@ -2,7 +2,7 @@
     {
         "taskName": "Add switch todo order",
         "taskDesc": "Have an option on each task for jumping its order up or down the list.",
-        "taskStatus": "doing"
+        "taskStatus": "done"
     },
     {
         "taskName": "Make server configurable",

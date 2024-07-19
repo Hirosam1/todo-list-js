@@ -28,9 +28,9 @@ const homePage = '/todo-list';
 linkPage(app, './index.html', `${homePage}`, 'text/html');
 linkPage(app, './style.css',  `${homePage}/style.css`,'text/css');
 linkPage(app, './script.js',  `${homePage}/script.js`, 'text/javascript');
-linkPage(app, './writing.png',`${homePage}/writing.png`, 'image/png');
-linkPage(app, './day-night.png',`${homePage}/day-night.png`, 'image/png');
+linkPage(app, './todo-list-icon.svg',`${homePage}/todo-list-icon.svg`, 'image/svg+xml');
 linkPage(app, './arrow-up.svg',`${homePage}/arrow-up.svg`, 'image/svg+xml');
+linkPage(app, './day-night.svg',`${homePage}/day-night.svg`, 'image/svg+xml');
 
 //Web-service for loading the todolist for server memory.
 app.get(`${homePage}/load-todolist`, jsonParser, async (req, resp)=>{

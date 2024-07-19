@@ -34,7 +34,7 @@ input.header-btn{
 
 #page-title{
     background:#567860;
-    width:36%;
+    width:46%;
     border-top-left-radius:25px;
 }
 
@@ -64,7 +64,7 @@ input.header-btn{
 #switch-theme{
     text-align:center;
     background:#8C6F43;
-    width:20%;
+    width:10%;
     justify-content: space-evenly;
     border-top-right-radius:25px;
 }

@@ -154,8 +154,6 @@ input.header-btn{
     width:100%;
     padding:5px;
     user-select:none;
-    border-top-right-radius:35px;
-    border-bottom-right-radius:35px;
 }
 
 .status-choice{
@@ -179,6 +177,23 @@ input.header-btn{
     margin-bottom:12px;
 }
 
+.move-task{
+    background:#4B3A2E;
+    padding:10px;
+    border-top-right-radius:35px;
+    border-bottom-right-radius:35px;
+    justify-content:space-between;
+}
+
+.flip-x{
+    transform: rotateX(180deg);
+}
+
+.task-arrow{
+    height:50%;
+    max-height:30px;
+}
+/* Prompt stuff */
 .simple-prompt{
     position:fixed;
     left:35%;

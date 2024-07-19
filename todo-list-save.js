@@ -1,12 +1,12 @@
 [
     {
-        "taskName": "Comprar cartao SD",
-        "taskDesc": "Cartao SD para crackear o 3DS, denovo. E instalar jogos e até o flipnote. :]",
-        "taskStatus": "pending"
+        "taskName": "Add switch todo order",
+        "taskDesc": "Have an option on each task for jumping its order up or down the list.",
+        "taskStatus": "doing"
     },
     {
-        "taskName": "Comprar sacolas de mercado",
-        "taskDesc": "Sacolas de mercado reutilizáveis para reduzir o lixo plastico. Melhorando o meio ambiente.",
+        "taskName": "Make server configurable",
+        "taskDesc": "Have server accept argument parameters. One idea is have the server being able to run  as'live' where the site loads from the files. Or static, where the site loads once into memory. The live configuration is for development.",
         "taskStatus": "pending"
     },
     {
@@ -17,11 +17,6 @@
     {
         "taskName": "Website responsivness",
         "taskDesc": "Make the layout of the website more responsive, not only for desktop, but for mobile as well.",
-        "taskStatus": "pending"
-    },
-    {
-        "taskName": "Make server configurable",
-        "taskDesc": "Have server accept argument parameters.",
         "taskStatus": "pending"
     }
 ]

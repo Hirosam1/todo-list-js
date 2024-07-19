@@ -25,6 +25,12 @@ function createTodo(taskName, taskDesc='', taskStatus='pending'){
     return todo;
 }
 
+function clearChilds(arr){
+    while(arr.firstChild){
+	arr.firstChild.remove();
+    }
+}
+
 function indexOfTaskName(todoList, taskName){
     for(let i=0;i<todoList.length;i++){
 	if(myTodoList[i]['taskName']===taskName){
@@ -76,7 +82,7 @@ htmlGenerator.loadRemovableTasksOpts = function(){
 htmlGenerator.addTask = function(taskName, taskDescription, taskStatus='pending'){
     //Push back HTML for a task
     let taskInstHtml =`<div class="task-inst fx-row">`
-	+`<div class="task-definition" onclick="onTaskClick(this)")>`
+	+`<div class="task-definition" onclick="onTaskClick(this);")>`
 	+`<p>`
 	+`<span class="task-name">${taskName}${taskSep}</span>`
 	+`<span class="task-description">${taskDescription}</span>`
@@ -97,6 +103,10 @@ htmlGenerator.addTask = function(taskName, taskDescription, taskStatus='pending'
 	+     `<input type="radio" name="task-status-${taskName}" value="done" ${taskStatus==='done'?'checked':''} onChange="onChangeTaskStatus('${taskName}','done')"/>`
 	+ `</div>`
 	+`</div>`
+	+`<div class="move-task fx-col">`
+	+`<img src="todo-list/arrow-up.svg" class="task-arrow" onclick="onMoveUp('${taskName}');" alt="">`
+	+`<img src="todo-list/arrow-up.svg" class="task-arrow flip-x" onclick="onMoveDown('${taskName}');" alt="">`
+	+`</div>` 
 	+`</div>`;
     //Appending html code like this, prevents reset the input status of radio buttons.
     let taskInstObj = document.createElement('template')
@@ -157,16 +167,16 @@ let onAcceptEditTask = function(){
     let i = indexOfTaskName(myTodoList,taskName);
     if(i!=-1 && newTaskName!=''){
 	if(newTaskName === taskName){
-	    clickedTaskObj.getElementsByClassName('task-description')[0].innerHTML = ` ${newTaskDesc}`;
 	    myTodoList[i]['taskDesc'] = newTaskDesc; 
 	}
 	else{
 	    myTodoList[i]['taskName'] = newTaskName;
 	    myTodoList[i]['taskDesc'] = newTaskDesc;
-	    clickedTaskObj.getElementsByClassName('task-name')[0].innerHTML = `${newTaskName}${taskSep}`;
-	    clickedTaskObj.getElementsByClassName('task-description')[0].innerHTML = ` ${newTaskDesc}`;
 	}
     }
+    
+    clearChilds(taskListObj);
+    loadFromTodoList(myTodoList);
     saveTodoList();
     disablePrompt(editTaskPromptObj);
     enableUI();
@@ -240,6 +250,37 @@ let onAcceptRemoveTask = function(){
 let onCancelRemoveTask = function(){
     disablePrompt(deleteTaskPromptObj);
     enableUI();
+}
+
+function array_move(arr, old_index, new_index) {
+    if (new_index >= arr.length) {
+        var k = new_index - arr.length + 1;
+        while (k--) {
+            arr.push(undefined);
+        }
+    }
+    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+    return arr;
+};
+
+let onMoveUp = function(taskName){
+    let i = indexOfTaskName(myTodoList,taskName);
+    if(i>=0){
+	myTodoList = array_move(myTodoList,i,i-1);
+	clearChilds(taskListObj);
+	loadFromTodoList(myTodoList);
+	saveTodoList();
+    }
+}
+
+let onMoveDown = function(taskName){
+    let i = indexOfTaskName(myTodoList,taskName);
+    if(i>=0){
+	myTodoList = array_move(myTodoList,i,i+1);
+	clearChilds(taskListObj);
+	loadFromTodoList(myTodoList);
+	saveTodoList();
+    }
 }
 
 let loadFromTodoList = function(todoListArr){

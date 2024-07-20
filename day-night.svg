@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
-     inkscape:zoom="0.44008137"
-     inkscape:cx="212.46071"
-     inkscape:cy="452.1891"
+     inkscape:zoom="0.68829537"
+     inkscape:cx="363.21616"
+     inkscape:cy="335.61173"
      inkscape:window-width="1366"
      inkscape:window-height="700"
      inkscape:window-x="0"
@@ -40,20 +40,6 @@
      id="layer1"
      transform="translate(-30.688697,-75.557114)">
     <path
-       style="fill:#a09c72;fill-opacity:1;stroke:#1b100d;stroke-width:7;stroke-opacity:1"
-       id="path1"
-       sodipodi:type="arc"
-       sodipodi:cx="167.29866"
-       sodipodi:cy="-125.94496"
-       sodipodi:rx="50.910664"
-       sodipodi:ry="50.910664"
-       sodipodi:start="0"
-       sodipodi:end="3.1415927"
-       sodipodi:arc-type="arc"
-       d="m 218.20932,-125.94496 a 50.910664,50.910664 0 0 1 -25.45533,44.089926 50.910664,50.910664 0 0 1 -50.91066,0 50.910664,50.910664 0 0 1 -25.45533,-44.089926"
-       sodipodi:open="true"
-       transform="rotate(90)" />
-    <path
        style="fill:#3a2810;fill-opacity:1;stroke:none;stroke-width:6.7596;stroke-opacity:1"
        id="path2"
        sodipodi:type="arc"
@@ -67,6 +53,20 @@
        d="m 214.77253,125.14137 a 47.473866,50.910664 0 0 1 -23.73694,44.08993 47.473866,50.910664 0 0 1 -47.47386,0 47.473866,50.910664 0 0 1 -23.73694,-44.08993"
        sodipodi:open="true"
        transform="matrix(0,1,1,0,0,0)" />
+    <path
+       style="fill:#a09c72;fill-opacity:1;stroke:#1b100d;stroke-width:7;stroke-opacity:1"
+       id="path1"
+       sodipodi:type="arc"
+       sodipodi:cx="167.29866"
+       sodipodi:cy="-125.94496"
+       sodipodi:rx="50.910664"
+       sodipodi:ry="50.910664"
+       sodipodi:start="0"
+       sodipodi:end="3.1415927"
+       sodipodi:arc-type="arc"
+       d="m 218.20932,-125.94496 a 50.910664,50.910664 0 0 1 -25.45533,44.089926 50.910664,50.910664 0 0 1 -50.91066,0 50.910664,50.910664 0 0 1 -25.45533,-44.089926"
+       sodipodi:open="true"
+       transform="rotate(90,-1.1354167e-6,9.3749998e-8)" />
     <path
        style="fill:#a09c72;fill-opacity:1;stroke:#1b100d;stroke-width:7;stroke-opacity:1"
        d="M 123.67113,79.523544 V 102.77188"

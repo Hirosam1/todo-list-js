@@ -30,6 +30,7 @@ linkPage(app, './style.css',  `${homePage}/style.css`,'text/css');
 linkPage(app, './script.js',  `${homePage}/script.js`, 'text/javascript');
 linkPage(app, './todo-list-icon.svg',`${homePage}/todo-list-icon.svg`, 'image/svg+xml');
 linkPage(app, './arrow-up.svg',`${homePage}/arrow-up.svg`, 'image/svg+xml');
+linkPage(app, './arrow-up1.svg',`${homePage}/arrow-up1.svg`, 'image/svg+xml');
 linkPage(app, './day-night.svg',`${homePage}/day-night.svg`, 'image/svg+xml');
 
 //Web-service for loading the todolist for server memory.

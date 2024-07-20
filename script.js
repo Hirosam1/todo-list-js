@@ -104,8 +104,8 @@ htmlGenerator.addTask = function(taskName, taskDescription, taskStatus='pending'
 	+ `</div>`
 	+`</div>`
 	+`<div class="move-task fx-col">`
-	+`<img src="todo-list/arrow-up.svg" class="task-arrow" onclick="onMoveUp('${taskName}');" alt="">`
-	+`<img src="todo-list/arrow-up.svg" class="task-arrow flip-x" onclick="onMoveDown('${taskName}');" alt="">`
+	+`<img src="todo-list/arrow-up1.svg" class="task-arrow" onclick="onMoveUp('${taskName}');" alt="">`
+	+`<img src="todo-list/arrow-up1.svg" class="task-arrow flip-x" onclick="onMoveDown('${taskName}');" alt="">`
 	+`</div>` 
 	+`</div>`;
     //Appending html code like this, prevents reset the input status of radio buttons.

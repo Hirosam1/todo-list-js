@@ -147,6 +147,7 @@ input.header-btn{
     max-width:70%;
     border-top-left-radius:35px;
     border-bottom-left-radius:35px;
+    user-select:none;
 }
 
 .task-status-choices{
@@ -194,6 +195,14 @@ input.header-btn{
 .task-arrow{
     height:50%;
     max-height:30px;
+}
+
+.task-arrow:hover{
+    filter:brightness(80%) saturate(140%);
+}
+
+.task-arrow:active{
+    filter:brightness(65%) saturate(162%);
 }
 /* Prompt stuff */
 .simple-prompt{

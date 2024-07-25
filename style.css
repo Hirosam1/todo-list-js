@@ -150,6 +150,14 @@ input.header-btn{
     user-select:none;
 }
 
+.task-definition:hover{
+    filter:brightness(90%);
+}
+
+.task-definition:active{
+    filter:brightness(80%) saturate(112%);
+}
+
 .task-status-choices{
     background:#B15A28;
     text-align:center;
@@ -193,6 +201,7 @@ input.header-btn{
 }
 
 .task-arrow{
+    user-select:none;
     height:50%;
     max-height:30px;
 }

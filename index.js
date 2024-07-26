@@ -4,7 +4,7 @@ const {readFile, writeFile} = require('fs').promises;
 const PageService = require('./page-service');
 
 let pageType = process.argv[2];
-if(pageType === undefined || (pageType!='static' && pageType!='live')){
+if(pageType === undefined || pageType!='static'){
     pageType = 'live';
 }
 console.log('Running server as: '+ pageType);
@@ -12,13 +12,13 @@ const homePage = '/todo-list';
 let appService = new PageService();
 let linkType = pageType === 'static'?'linkPageStatic':'linkPageLive';
 //Route all web-page resources (URI).
-appService[linkType]('./index.html', `${homePage}`, 'text/html');
-appService[linkType]('./style.css',  `${homePage}/style.css`,'text/css');
-appService[linkType]('./script.js',  `${homePage}/script.js`, 'text/javascript');
-appService[linkType]('./todo-list-icon.svg',`${homePage}/todo-list-icon.svg`, 'image/svg+xml');
-appService[linkType]('./arrow-up.svg',`${homePage}/arrow-up.svg`, 'image/svg+xml');
-appService[linkType]('./arrow-up1.svg',`${homePage}/arrow-up1.svg`, 'image/svg+xml');
-appService[linkType]('./day-night.svg',`${homePage}/day-night.svg`, 'image/svg+xml');
+appService[linkType]('./web/index.html', `${homePage}`, 'text/html');
+appService[linkType]('./web/style.css',  `${homePage}/style.css`,'text/css');
+appService[linkType]('./web/script.js',  `${homePage}/script.js`, 'text/javascript');
+appService[linkType]('./res/todo-list-icon.svg',`${homePage}/todo-list-icon.svg`, 'image/svg+xml');
+appService[linkType]('./res/arrow-up.svg',`${homePage}/arrow-up.svg`, 'image/svg+xml');
+appService[linkType]('./res/arrow-up.svg',`${homePage}/arrow-up1.svg`, 'image/svg+xml');
+appService[linkType]('./res/day-night.svg',`${homePage}/day-night.svg`, 'image/svg+xml');
 
 //Web-service for loading the todolist for server memory.
 appService.linkPageService(`${homePage}/load-todolist`,'get','json',async (req, resp)=>{

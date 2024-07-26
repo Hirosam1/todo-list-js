@@ -51,7 +51,7 @@ module.exports = class PageService{
 	this.app[method](servicePath, parser, service);
     }
 
-    listen(homePage){
+    listen(homePage=''){
 	this.app.listen(process.env.PORT || 3000, () =>
 			console.log(`App available on: http://localhost:3000${homePage}`));
     }
